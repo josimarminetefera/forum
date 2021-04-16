@@ -37,7 +37,7 @@ public class TopicoDto {
 	}
 
 	public static List<TopicoDto> topicoParaTopicoDto(List<Topico> topicos) {
-		//recebe a lista de tópicos e devolve a lista em dto
+		// recebe a lista de tópicos e devolve a lista em dto
 		return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());
 	}
 }
