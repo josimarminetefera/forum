@@ -23,6 +23,7 @@ public class Topico {
 	private Long id;
 	private String titulo;
 	private String mensagem;
+	private String cursoNome;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	@Enumerated(EnumType.STRING)
 	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
@@ -32,6 +33,16 @@ public class Topico {
 	private Curso curso;
 	@OneToMany(mappedBy = "topico") // um topico para varias respostas
 	private List<Resposta> respostas = new ArrayList<>();
+
+	public Topico() {
+
+	}
+
+	public Topico(String titulo, String mensagem, Curso curso) {
+		this.titulo = titulo;
+		this.mensagem = mensagem;
+		this.curso = curso;
+	}
 
 	@Override
 	public int hashCode() {
