@@ -18,11 +18,17 @@ public class TopicosController {
 	@Autowired
 	private TopicoRepository topicoRepository;
 
+	// http://localhost:8080/topicos
+	// http://localhost:8080/topicos?nomeCurso=HTML%205
 	@RequestMapping("/topicos")
-	public List<TopicoDto> lista() {
-
-		List<Topico> topicos = topicoRepository.findAll();
-
-		return TopicoDto.topicoParaTopicoDto(topicos);
+	public List<TopicoDto> lista(String nomeCurso) {
+		System.out.println(nomeCurso);
+		if (nomeCurso == null) {
+			List<Topico> topicos = topicoRepository.findAll();
+			return TopicoDto.topicoParaTopicoDto(topicos);
+		} else {
+			List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+			return TopicoDto.topicoParaTopicoDto(topicos);
+		}
 	}
 }
