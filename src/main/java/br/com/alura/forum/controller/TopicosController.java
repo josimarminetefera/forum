@@ -44,9 +44,9 @@ public class TopicosController {
 
 	// @RequestMapping(value = "/topicos", method = RequestMethod.POST)
 	@PostMapping
-	public ResponseEntity<TopicoDto> cadastrar(@RequestBody TopicoForm topicoForm,
+	public ResponseEntity<TopicoDto> cadastrar(@RequestBody TopicoForm params,
 			UriComponentsBuilder uriComponentsBuilder) {
-		Topico topico = topicoForm.topicoFormParaTopico(cursoRepository);
+		Topico topico = params.topicoFormParaTopico(cursoRepository);
 		topicoRepository.save(topico);
 
 		// Criar retorno de 201 caso de sucesso
