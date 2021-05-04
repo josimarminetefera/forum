@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.alura.forum.modelo.Topico;
 
 public class TopicoDto {
@@ -36,8 +38,9 @@ public class TopicoDto {
 		return dataCriacao;
 	}
 
-	public static List<TopicoDto> topicoParaTopicoDto(List<Topico> topicos) {
+	public static Page<TopicoDto> topicoParaTopicoDto(Page<Topico> topicos) {
 		// recebe a lista de tópicos e devolve a lista em dto
-		return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());
+		// return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());
+		return topicos.map(TopicoDto::new);// vai pegar cada um dos itens de topicos e manda para topicosdto.
 	}
 }
