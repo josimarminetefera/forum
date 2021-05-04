@@ -1,6 +1,7 @@
 package br.com.alura.forum.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,16 +44,20 @@ public class TopicosController {
 
 	// http://localhost:8080/topicos
 	// http://localhost:8080/topicos?pagina=1&quantidade=1
+	// http://localhost:8080/topicos?pagina=0&quantidade=3&ordenacao=id
 	// http://localhost:8080/topicos?nomeCurso=HTML%205
 	// @RequestMapping(value = "/topicos", method = RequestMethod.GET)
 	// parametro vem na URL e não é obrigatório @RequestParam(required = false)
 	@GetMapping
 	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina,
 			@RequestParam int quantidade, @RequestParam String ordenacao) {
+		// PODE SER USADO TAMBÉM UM (Pageable paginacao) no lugar da pagina,quantidade e
+		// ordenação PARA ISSO DAR CERTO TEM QUE HABILITAR UM MODULO
+		// para usar http://localhost:8080/topicos?page=0&size=3&sort=id,asc
 
 		System.out.println(nomeCurso);
 
-		Pageable paginacao = PageRequest.of(pagina, quantidade, Direction.ASC, ordenacao);
+		Pageable paginacao = PageRequest.of(pagina, quantidade, Direction.DESC, ordenacao);
 
 		if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
