@@ -1,4 +1,4 @@
-package br.com.alura.forum.controller.dto;
+package br.com.alura.forum_alura.controller.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 
-import br.com.alura.forum.modelo.Topico;
+import br.com.alura.forum_alura.modelo.Topico;
 
 public class TopicoDto {
 	private Long id;

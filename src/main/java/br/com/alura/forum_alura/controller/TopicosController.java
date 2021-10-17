@@ -1,4 +1,4 @@
-package br.com.alura.forum.controller;
+package br.com.alura.forum_alura.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.alura.forum.controller.dto.DetalheTopicoDto;
-import br.com.alura.forum.controller.dto.TopicoDto;
-import br.com.alura.forum.controller.form.AtualiacaoTopicoForm;
-import br.com.alura.forum.controller.form.TopicoForm;
-import br.com.alura.forum.modelo.Topico;
-import br.com.alura.forum.repository.CursoRepository;
-import br.com.alura.forum.repository.TopicoRepository;
+import br.com.alura.forum_alura.controller.dto.DetalheTopicoDto;
+import br.com.alura.forum_alura.controller.dto.TopicoDto;
+import br.com.alura.forum_alura.controller.form.AtualiacaoTopicoForm;
+import br.com.alura.forum_alura.controller.form.TopicoForm;
+import br.com.alura.forum_alura.modelo.Topico;
+import br.com.alura.forum_alura.repository.CursoRepository;
+import br.com.alura.forum_alura.repository.TopicoRepository;
 
 @RestController
 @RequestMapping("/topicos") // este controller responde a este nome /topicos
@@ -54,6 +54,7 @@ public class TopicosController {
 		// PODE SER USADO TAMBÉM UM (Pageable paginacao) no lugar da pagina,quantidade e
 		// ordenação PARA ISSO DAR CERTO TEM QUE HABILITAR UM MODULO
 		// para usar http://localhost:8080/topicos?page=0&size=3&sort=id,asc
+		// @PageableDefault(sort="id")
 
 		System.out.println(nomeCurso);
 

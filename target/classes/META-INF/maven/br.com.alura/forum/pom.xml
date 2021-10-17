@@ -32,7 +32,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
-		
+
 		<!-- apenas necessário a partir do spring 2.3 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
