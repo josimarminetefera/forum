@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
-	// localhost:8080
-	@RequestMapping("/")
-	@ResponseBody // para abrir na tela e não tentar encontrar uma pagina com o nome Ola Mundo
-	public String hello() {
-		return "Ola Mundo";
-	}
+    // localhost:8080
+    @RequestMapping("/")
+    @ResponseBody // para abrir na tela e não tentar encontrar uma pagina com o nome Ola Mundo
+    public String hello() {
+        return "Ola Mundo";
+    }
 }
