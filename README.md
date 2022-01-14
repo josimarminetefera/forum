@@ -1,4 +1,4 @@
-# forum
+# forum_alura
 Aplicação REST com Spring Boot, para aplicar conteudo do curso da Alura.
 
 ## Banco de dados
