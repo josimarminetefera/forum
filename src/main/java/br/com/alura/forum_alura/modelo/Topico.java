@@ -25,12 +25,13 @@ public class Topico {
 	private String mensagem;
 	private String cursoNome;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING) // Por padrão ele grava a ordem e int mas aqui esta para gravar em string
 	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
 	@ManyToOne // muitos topicos para um autor
 	private Usuario autor;
 	@ManyToOne // muitos topicos para um curso
 	private Curso curso;
+	// mappedBy é para o Spring não achar que é para fazer um novo mapeamento
 	@OneToMany(mappedBy = "topico") // um topico para varias respostas
 	private List<Resposta> respostas = new ArrayList<>();
 

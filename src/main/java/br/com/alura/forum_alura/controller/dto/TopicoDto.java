@@ -17,6 +17,7 @@ public class TopicoDto {
 	private String mensagem;
 	private LocalDateTime dataCriacao;
 
+	//Recebo um objeto Topico que tem todos parametros e dai acesso todas os parametros 
 	public TopicoDto(Topico topico) {
 		this.id = topico.getId();
 		this.titulo = topico.getTitulo();
@@ -40,6 +41,7 @@ public class TopicoDto {
 		return dataCriacao;
 	}
 
+	//Este metodo é o de conversão de Topico para TopicoDto
 	public static Page<TopicoDto> topicoParaTopicoDto(Page<Topico> topicos) {
 		// recebe a lista de tópicos e devolve a lista em dto
 		// return topicos.stream().map(TopicoDto::new).collect(Collectors.toList());

@@ -1,3 +1,4 @@
+
 INSERT INTO forum.usuario(nome, email, senha) VALUES('Aluno', 'aluno@email.com', '123456');
 
 INSERT INTO forum.curso(nome, categoria) VALUES('Spring Boot', 'Programação');
