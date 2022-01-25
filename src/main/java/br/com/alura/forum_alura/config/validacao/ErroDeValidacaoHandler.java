@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+// @RestControllerAdvice indica que isso é um interceptador de erros
 @RestControllerAdvice
 public class ErroDeValidacaoHandler {
 	// Este aqui é o interceptador que pega os erros e trata da forma que for melhor
@@ -22,8 +23,10 @@ public class ErroDeValidacaoHandler {
 	@Autowired
 	private MessageSource messageSource;
 
+	// MethodArgumentNotValidException é o erro que ele vai ficar buscando caso acontessa
+	// @ResponseStatus é para falar o status que vai ser devolvido para o usuárioo
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST) // Isso aqui é para ele devolver 400 e não 200
-	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ExceptionHandler(MethodArgumentNotValidException.class) // Indica que o metodo vai ser chamado quando der erro
 	public List<ErroDeFormularioDto> handle(MethodArgumentNotValidException exception) {
 		// Lista de erros que vai para o json cheio de coisas
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();

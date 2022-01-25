@@ -2,6 +2,9 @@ package br.com.alura.forum_alura.config.validacao;
 
 public class ErroDeFormularioDto {
 
+	// Esta class aqui vai representar um erro de validação esta class que vai
+	// mostrar o que vai mostrar para o usuário
+
 	private String campo;
 	private String erro;
 

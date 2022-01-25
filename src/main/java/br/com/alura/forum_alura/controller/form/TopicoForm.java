@@ -29,6 +29,8 @@ public class TopicoForm {
 	@NotEmpty
 	private String nomeCurso;
 
+	// Pode ser criado uma validação @Cpf por exemplo para criar uma nova formatação
+
 	public String getTitulo() {
 		return titulo;
 	}

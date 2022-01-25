@@ -85,6 +85,8 @@ public class TopicosController {
 	@Transactional
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm params,
 			UriComponentsBuilder uriComponentsBuilder) {
+		
+		//Se não usar o @Valid teria que fazer vários if else
 
 		// Tem que converter um Form para um Topico
 		Topico topico = params.topicoFormParaTopico(cursoRepository);

@@ -9,37 +9,39 @@ import br.com.alura.forum_alura.modelo.Topico;
 import br.com.alura.forum_alura.repository.TopicoRepository;
 
 public class AtualiacaoTopicoForm {
-    @NotNull
-    @NotEmpty
-    @Length(min = 5)
-    private String titulo;
+	@NotNull
+	@NotEmpty
+	@Length(min = 5)
+	private String titulo;
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 10)
-    private String mensagem;
+	@NotNull
+	@NotEmpty
+	@Length(min = 10)
+	private String mensagem;
 
-    public String getTitulo() {
-        return titulo;
-    }
+	// Pode ser criado uma validação @Cpf por exemplo para criar uma nova formatação
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+	public String getTitulo() {
+		return titulo;
+	}
 
-    public String getMensagem() {
-        return mensagem;
-    }
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
+	public String getMensagem() {
+		return mensagem;
+	}
 
-    public Topico atualizar(Long id, TopicoRepository topicoRepository) {
-        Topico topico = topicoRepository.getOne(id);
-        topico.setTitulo(this.titulo);
-        topico.setMensagem(this.mensagem);
-        return topico;
-    }
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public Topico atualizar(Long id, TopicoRepository topicoRepository) {
+		Topico topico = topicoRepository.getOne(id);
+		topico.setTitulo(this.titulo);
+		topico.setMensagem(this.mensagem);
+		return topico;
+	}
 
 }
