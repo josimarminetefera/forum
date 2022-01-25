@@ -50,7 +50,10 @@ public class TopicosController {
 	// parametro vem na URL e não é obrigatório @RequestParam(required = false)
 	// não é uma boa prática devolver entidades da JPA no controller, tipo
 	// Page<Topico> pois ele vai serializar todos atributos
-	//Não é uma boa prática voce devolver a classe de dominio Topico por isso é bom devolver um Dto
+	// Não é uma boa prática voce devolver a classe de dominio Topico por isso é bom
+	// devolver um Dto
+	// @RequestParam(required = false) String nomeCurso SERVE PARA VOCE CAPTURAR UM
+	// PARAMETRO http://localhost:8080/topicos?nomeCurso=HTML%205
 	@GetMapping
 	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina,
 			@RequestParam int quantidade, @RequestParam String ordenacao) {
