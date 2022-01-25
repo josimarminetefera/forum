@@ -39,6 +39,7 @@ public class Topico {
 
 	}
 
+	// Este construtor é para cadastros
 	public Topico(String titulo, String mensagem, Curso curso) {
 		this.titulo = titulo;
 		this.mensagem = mensagem;

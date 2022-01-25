@@ -77,11 +77,15 @@ public class TopicosController {
 
 	// @RequestMapping(value = "/topicos", method = RequestMethod.POST)
 	// parametro vem no corpo
+	// @RequestBody indica que vai pegar os parametros do corpo da requisição o que
+	// é diferente desse @RequestParam(required = false) String nomeCurso que pega
+	// do link do navegador
 	@PostMapping
 	@Transactional
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm params,
 			UriComponentsBuilder uriComponentsBuilder) {
 
+		// Tem que converter um Form para um Topico
 		Topico topico = params.topicoFormParaTopico(cursoRepository);
 		topicoRepository.save(topico);
 
