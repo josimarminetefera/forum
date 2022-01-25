@@ -76,10 +76,11 @@ public class TopicosController {
 	}
 
 	// @RequestMapping(value = "/topicos", method = RequestMethod.POST)
-	// parametro vem no corpo
+	// @RequestBody parametro vem no corpo
 	// @RequestBody indica que vai pegar os parametros do corpo da requisição o que
 	// é diferente desse @RequestParam(required = false) String nomeCurso que pega
 	// do link do navegador
+	// UriComponentsBuilder uriComponentsBuilder ele pega a uri que o cliente está na hora
 	@PostMapping
 	@Transactional
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm params,
@@ -91,6 +92,7 @@ public class TopicosController {
 
 		// Criar retorno de 201 caso de sucesso
 		URI uri = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+		// created é para enviar uma 201 e tem que passar o body também
 		return ResponseEntity.created(uri).body(new TopicoDto(topico));
 	}
 
