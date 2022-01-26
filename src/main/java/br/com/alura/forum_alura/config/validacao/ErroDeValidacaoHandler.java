@@ -23,7 +23,7 @@ public class ErroDeValidacaoHandler {
 	@Autowired
 	private MessageSource messageSource;
 
-	// MethodArgumentNotValidException é o erro que ele vai ficar buscando caso acontessa
+	// MethodArgumentNotValidException é o erro que ele vai ficar buscando caso
 	// @ResponseStatus é para falar o status que vai ser devolvido para o usuárioo
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST) // Isso aqui é para ele devolver 400 e não 200
 	@ExceptionHandler(MethodArgumentNotValidException.class) // Indica que o metodo vai ser chamado quando der erro

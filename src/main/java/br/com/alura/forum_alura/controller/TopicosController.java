@@ -80,13 +80,14 @@ public class TopicosController {
 	// @RequestBody indica que vai pegar os parametros do corpo da requisição o que
 	// é diferente desse @RequestParam(required = false) String nomeCurso que pega
 	// do link do navegador
-	// UriComponentsBuilder uriComponentsBuilder ele pega a uri que o cliente está na hora
+	// UriComponentsBuilder uriComponentsBuilder ele pega a uri que o cliente está
+	// na hora
 	@PostMapping
 	@Transactional
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm params,
 			UriComponentsBuilder uriComponentsBuilder) {
-		
-		//Se não usar o @Valid teria que fazer vários if else
+
+		// Se não usar o @Valid teria que fazer vários if else
 
 		// Tem que converter um Form para um Topico
 		Topico topico = params.topicoFormParaTopico(cursoRepository);
@@ -101,7 +102,8 @@ public class TopicosController {
 	// http://localhost:8080/topicos/12
 	@GetMapping("/{id}") // isso aqui é uma url dinamica que recebe um parametro com o nome id
 	public ResponseEntity detalhar(@PathVariable Long id) {
-		// @PathVariable indica que o parametro vem pela URI e não por ?
+		// @PathVariable indica que o parametro vem pela URI e não por ? ele vai vir na
+		// URL topicos/12
 		Optional<Topico> topico = topicoRepository.findById(id);
 		if (topico.isPresent()) {
 			return ResponseEntity.ok(new DetalheTopicoDto(topico.get()));
@@ -111,7 +113,7 @@ public class TopicosController {
 	}
 
 	@PutMapping("/{id}")
-	@Transactional
+	@Transactional // isso avisa o Spring que vai ter que comitar no final do metodo
 	public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualiacaoTopicoForm params) {
 		Optional<Topico> topico = topicoRepository.findById(id);
 		if (topico.isPresent()) {
@@ -120,6 +122,7 @@ public class TopicosController {
 		}
 
 		return ResponseEntity.notFound().build();
+		// Quando acaba o metodo ele atualiza no banco de dados
 	}
 
 	@DeleteMapping("/{id}")
