@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,7 +59,7 @@ public class TopicosController {
 	// @RequestParam(required = false) String nomeCurso SERVE PARA VOCE CAPTURAR UM
 	// PARAMETRO http://localhost:8080/topicos?nomeCurso=HTML%205
 	@GetMapping
-	@Cacheable(value = "listaDeTopicos") // Habilita o cache com o id de listaDeTopicos
+	@Cacheable(value = "lista_de_topicos") // Habilita o cache com o id de listaDeTopicos
 	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina,
 			@RequestParam int quantidade, @RequestParam String ordenacao,
 			@PageableDefault(sort = "id", direction = Direction.DESC, size = 1, page = 0) Pageable paginacaoAutomatica) {
@@ -86,10 +87,10 @@ public class TopicosController {
 	// @RequestBody indica que vai pegar os parametros do corpo da requisição o que
 	// é diferente desse @RequestParam(required = false) String nomeCurso que pega
 	// do link do navegador
-	// UriComponentsBuilder uriComponentsBuilder ele pega a uri que o cliente está
-	// na hora
+	// UriComponentsBuilder ele pega a uri que o cliente está na hora
 	@PostMapping
 	@Transactional
+	@CacheEvict(value = "lista_de_topicos", allEntries = true) // Isso serve para dizer para o spring atualizar o cache
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm params,
 			UriComponentsBuilder uriComponentsBuilder) {
 
@@ -120,6 +121,7 @@ public class TopicosController {
 
 	@PutMapping("/{id}")
 	@Transactional // isso avisa o Spring que vai ter que comitar no final do metodo
+	@CacheEvict(value = "lista_de_topicos", allEntries = true) // Isso serve para dizer para o spring atualizar o cache
 	public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualiacaoTopicoForm params) {
 		Optional<Topico> topico = topicoRepository.findById(id);
 		if (topico.isPresent()) {
@@ -133,6 +135,7 @@ public class TopicosController {
 
 	@DeleteMapping("/{id}")
 	@Transactional
+	@CacheEvict(value = "lista_de_topicos", allEntries = true) // Isso serve para dizer para o spring atualizar o cache
 	public ResponseEntity<?> remover(@PathVariable Long id) {
 		Optional<Topico> topico = topicoRepository.findById(id);
 		if (topico.isPresent()) {
