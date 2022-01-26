@@ -21,9 +21,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	// url são publicas e quais privadas
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/topicos").permitAll()
-		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/topicos").permitAll()
+				.antMatchers(HttpMethod.GET, "/topicos/*").permitAll().anyRequest().authenticated().and().formLogin();
 	}
 
 	// Configuração de recursos estáticos permissão para arquivos js css imagens

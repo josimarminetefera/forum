@@ -1,12 +1,22 @@
 package br.com.alura.forum_alura.modelo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+// UserDetails esta classe representa o usuário do sistema
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +24,10 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+
+	// FetchType.EAGER quando carrega o usuário ja carrega a lista de perfil
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Perfil> perfis = new ArrayList<Perfil>();
 
 	@Override
 	public int hashCode() {
@@ -70,6 +84,47 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// perfil do usuario coleção dos perfis do usuário
+		return this.perfis;
+	}
+
+	@Override
+	public String getPassword() {
+		// para saber a senha do usuário
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// conta não esta expirada
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// conta não está bloqueada
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// credencial não está expirada
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// conta está habilitada
+		return true;
 	}
 
 }
