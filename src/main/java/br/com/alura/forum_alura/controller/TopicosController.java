@@ -7,10 +7,12 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,8 +58,10 @@ public class TopicosController {
 	// @RequestParam(required = false) String nomeCurso SERVE PARA VOCE CAPTURAR UM
 	// PARAMETRO http://localhost:8080/topicos?nomeCurso=HTML%205
 	@GetMapping
+	@Cacheable(value = "listaDeTopicos") // Habilita o cache com o id de listaDeTopicos
 	public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina,
-			@RequestParam int quantidade, @RequestParam String ordenacao) {
+			@RequestParam int quantidade, @RequestParam String ordenacao,
+			@PageableDefault(sort = "id", direction = Direction.DESC, size = 1, page = 0) Pageable paginacaoAutomatica) {
 		// PODE SER USADO TAMBÉM UM (Pageable paginacao) no lugar da pagina,quantidade e
 		// ordenação PARA ISSO DAR CERTO TEM QUE HABILITAR UM MODULO
 		// para usar http://localhost:8080/topicos?page=0&size=3&sort=id,asc
