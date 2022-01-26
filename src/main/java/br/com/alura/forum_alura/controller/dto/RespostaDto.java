@@ -6,31 +6,34 @@ import br.com.alura.forum_alura.modelo.Resposta;
 
 public class RespostaDto {
 
-    private Long id;
-    private String mensagem;
-    private LocalDateTime dataCriacao;
-    private String nomeAutor;
+	// Esta classe é um dto para devolver os dados quando busca os detalhes de cada
+	// item
 
-    public RespostaDto(Resposta resposta) {
-        this.id = resposta.getId();
-        this.mensagem = resposta.getMensagem();
-        this.dataCriacao = resposta.getDataCriacao();
-        this.nomeAutor = resposta.getAutor().getNome();
-    }
+	private Long id;
+	private String mensagem;
+	private LocalDateTime dataCriacao;
+	private String nomeAutor;
 
-    public Long getId() {
-        return id;
-    }
+	public RespostaDto(Resposta resposta) {
+		this.id = resposta.getId();
+		this.mensagem = resposta.getMensagem();
+		this.dataCriacao = resposta.getDataCriacao();
+		this.nomeAutor = resposta.getAutor().getNome();
+	}
 
-    public String getMensagem() {
-        return mensagem;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
+	public String getMensagem() {
+		return mensagem;
+	}
 
-    public String getNomeAutor() {
-        return nomeAutor;
-    }
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
 }
