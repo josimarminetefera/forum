@@ -49,7 +49,8 @@ public class TopicosController {
 	// @RequestMapping(value = "/topicos", method = RequestMethod.GET)
 	// parametro vem na URL e não é obrigatório @RequestParam(required = false)
 	// não é uma boa prática devolver entidades da JPA no controller, tipo
-	// Page<Topico> pois ele vai serializar todos atributos
+	// Page<Topico> pois ele vai serializar todos atributos, tem o list mas tem
+	// também alguns dados de paginação
 	// Não é uma boa prática voce devolver a classe de dominio Topico por isso é bom
 	// devolver um Dto
 	// @RequestParam(required = false) String nomeCurso SERVE PARA VOCE CAPTURAR UM
@@ -64,6 +65,7 @@ public class TopicosController {
 
 		System.out.println(nomeCurso);
 
+		// Pageable para controlar paginação
 		Pageable paginacao = PageRequest.of(pagina, quantidade, Direction.DESC, ordenacao);
 
 		if (nomeCurso == null) {
