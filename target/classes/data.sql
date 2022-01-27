@@ -1,6 +1,6 @@
 --ESTE ARQUIVO É EXECUTANDO QUANDO O PROJETO INICIA
 --para usar no H2 tem que tirar todos forum. e para usar para mysql tem que colocar forum.usuario
-INSERT INTO usuario(nome, email, senha) VALUES('Aluno', 'aluno@email.com', '123456');
+INSERT INTO usuario(nome, email, senha) VALUES('Aluno', 'aluno@email.com', '$2a$10$D93oL0Tm7sjhfZiKETPJ.OFhSjvDZR/oN0ZqeHBFud0sL3oSiK3z2');
 
 INSERT INTO curso(nome, categoria) VALUES('Spring Boot', 'Programação');
 INSERT INTO curso(nome, categoria) VALUES('HTML 5', 'Front-end');
