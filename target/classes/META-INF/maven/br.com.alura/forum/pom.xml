@@ -46,6 +46,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		
+		<!-- biblioteca para geração e controle de token -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 
 		<!-- apenas necessário a partir do spring 2.3 -->
 		<dependency>
